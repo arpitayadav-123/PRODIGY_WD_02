@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="page.js"></script>
+</head>
+<body>
+    <div class="container">
+    <div class="watch">
+    <div class="outer-circle">
+    <div class="inner-circle">
+        <h1 id="displaytime">00:00:00</h1>
+    </div>
+    </div>
+        <div class="button-wrapper">
+        <button class="button-reset" onclick="watchreset()">Reset</button>
+        <button class="button-play" onclick="watchstart()">Play</button>
+        <button class="button-pause" onclick="watchstop()">Pause</button>
+        <button class="button-laps" onclick="watchlaps()">Laps</button>
+    </div>
+    </div>
+    <div class="laps">
+         <div class="laps-items">
+            <div id="stamp">#0</div>
+            <div>
+              <div id="time">00:00:00</div>
+            </div>
+         </div>
+          <button class="lap-clear-button" onclick="lapclear()">Clear All</button>
+        </div>
+   </div>
+   <script>
+      let[seconds,minutes,hours]=[0,0,0];
+      let displaytime=document.getElementById("displaytime");
+      let timer=null;
+      let h,m,s;
+      const bg=document.getElementsByClassName("outer-circle")[0];
+      function stopwatch() 
+      {
+          seconds++;
+          if(seconds==60) 
+          {
+               minutes++;
+             if(minutes==0)
+             {
+                hours++;
+             }
+          }
+           h=hours<10?"0"+hours:hours;
+           m=minutes<10?"0"+minutes:minutes;
+           s=seconds<10?"0"+seconds:seconds;
+          displaytime.innerHTML=h+":"+m+":"+s;
+          totaltime=parseInt((parseInt(h)*3600)+(parseInt(m)*60)+(parseInt(s)));
+          return totaltime;
+        } 
+      function watchstart()
+      {
+          bg.classList.add("animation-bg");
+          if(timer!==null)
+          {
+             clearInterval(timer);
+          }
+          timer=setInterval(stopwatch,1000);
+      }
+      function watchstop()
+      {
+      clearInterval(timer);
+      }
+      function watchreset()
+      {
+        bg.classList.remove("animation-bg");
+      clearInterval(timer);
+      [seconds,minutes,hours]=[0,0,0];
+      displaytime.innerHTML="00:00:00";
+      }
+      let count=0,h1,m1,m2,s1,hh,mm,ss;
+      let totaltime,newtime,lapstime=0;
+      let stamp=document.getElementById("stamp");
+      let time=document.getElementById("time");
+      function watchlaps(totaltime)
+      {  
+         totaltime=stopwatch();
+         count++;
+         newtime=parseInt(totaltime-lapstime);
+         lapstime=parseInt(newtime);
+         h1=parseInt(lapstime/3600);
+         m2=parseFloat(lapstime%3600);
+         m1=parseInt(m2/60);
+         s1=parseInt(m2%60);
+         hh=h1<10?"0"+h1:h1;
+         mm=m1<10?"0"+m1:m1;
+         ss=s1<10?"0"+s1:s1;
+         stamp.innerHTML="#"+count;
+         time.innerHTML=hh+":"+mm+":"+ss;
+        }
+        function lapclear()
+        {
+          clearInterval(timer);
+          stamp.innerHTML="#0";
+          time.innerHTML="00:00:00";
+        }
+      
+    </script>
+</body>
+</html>

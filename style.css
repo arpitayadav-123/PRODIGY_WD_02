@@ -1,0 +1,154 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+   display: flex;
+   font-family: 'sans serif';
+   font-size: 16px; 
+   width:100%;
+   height:100vh;
+   background-image:url("stop.png");
+   background-size: cover;
+   justify-content: center;
+   align-items: center;
+}
+.outer-circle{
+    display:flex;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    justify-content: center;
+    align-items: center;
+    margin-left:24px;
+    background-color:white;
+}
+.animation-bg{
+    background:linear-gradient(-45deg,#ee7752,#e73c7e,#23a6d5,#23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+@keyframes gradient
+{
+  0%{background-position: 0% 50%;}
+  50%{background-position: 100% 50%;}
+  100%{background-position: 0% 50%;}
+}
+.inner-circle{
+    display:flex;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background-color:#040404;
+    justify-content: center;
+    align-items: center;
+}
+.inner-circle h1{
+    color:white;
+    font-size:50px;
+}
+.button-wrapper{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-top:20px;
+}
+.button-reset{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border-width:2px;
+    border-color: white;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}
+.button-play{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border-width:2px;
+    border-color: white;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}
+.button-laps{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border-width:2px;
+    border-color: white;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}
+.button-pause{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    border-width:2px;
+    border-color: white;
+    background-color: black;
+    color:white;
+    cursor: pointer;
+}
+.button-reset:hover{
+    background-color: white;
+    color:black;
+}
+.button-play:hover{
+    background-color: white;
+    color:black;
+}
+.button-laps:hover{
+    background-color: white;
+    color:black;
+}
+.button-pause:hover{
+    background-color: white;
+    color:black;
+}
+.laps{
+    width:300px;
+    height:230px;
+    overflow:auto;
+    list-style: none;
+    color:white;
+    margin-top:15px;
+}
+.laps::-webkit-scrollbar{
+    display:none;
+}
+.laps-items{
+    display:flex;
+    width:100%;
+    padding:7px;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    border:2px solid #444;
+    border-radius: 50px;
+    margin-bottom: 5px;
+    font-size:25px;
+}
+.lap-clear-button{
+    display:flex;
+    position:absolute;
+    bottom:15px;
+    width: 100px;
+    padding:10px;
+    align-items: center;
+    justify-content: center;
+    margin-left:100.5px;
+    background:rgba(170, 166, 166,0.8);
+    border-width:5px;
+    border-color:white;
+    border-radius: 50px;
+    color:white;
+}
+.lap-clear-button:hover{
+    background-color:white;
+    color:black;
+}
